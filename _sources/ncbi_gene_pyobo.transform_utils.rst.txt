@@ -1,0 +1,29 @@
+ncbi\_gene\_pyobo.transform\_utils package
+==========================================
+
+Submodules
+----------
+
+ncbi\_gene\_pyobo.transform\_utils.ontology\_transform module
+-------------------------------------------------------------
+
+.. automodule:: ncbi_gene_pyobo.transform_utils.ontology_transform
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ncbi\_gene\_pyobo.transform\_utils.transform module
+---------------------------------------------------
+
+.. automodule:: ncbi_gene_pyobo.transform_utils.transform
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: ncbi_gene_pyobo.transform_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+ncbi_gene_pyobo
+===============
+
+.. toctree::
+   :maxdepth: 4
+
+   ncbi_gene_pyobo

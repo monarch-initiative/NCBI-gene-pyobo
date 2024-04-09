@@ -1,0 +1,45 @@
+ncbi\_gene\_pyobo package
+=========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ncbi_gene_pyobo.transform_utils
+
+Submodules
+----------
+
+ncbi\_gene\_pyobo.cli module
+----------------------------
+
+.. automodule:: ncbi_gene_pyobo.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ncbi\_gene\_pyobo.constants module
+----------------------------------
+
+.. automodule:: ncbi_gene_pyobo.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ncbi\_gene\_pyobo.transform module
+----------------------------------
+
+.. automodule:: ncbi_gene_pyobo.transform
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: ncbi_gene_pyobo
+   :members:
+   :undoc-members:
+   :show-inheritance:
