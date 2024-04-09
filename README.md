@@ -2,6 +2,14 @@
 
 Automatic translation of NCBIGene into `obo`/`owl`/`obojson` via [pyobo](https://github.com/biopragmatics/pyobo/) and [ROBOT](http://robot.obolibrary.org). Also generates [KGX](https://github.com/biolink/kgx) `nodes.tsv` and `edges.tsv` for the same.
 
+### Setup
+Create a virtual environment of your choice
+```
+pip install poetry
+cd ncbi-gene-pyobo
+poetry install
+```
+
 ### Get the obo file
 ```shell
 make obo
