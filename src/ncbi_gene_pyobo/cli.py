@@ -7,8 +7,9 @@ import click
 from pyobo.sources.ncbigene import get_obo
 
 from ncbi_gene_pyobo import __version__
-from ncbi_gene_pyobo.constants import DEFAULT_OUTPUT_DIR, OBO_FILENAME, DEFAULT_INPUT_DIR
-from ncbi_gene_pyobo.transform import DATA_SOURCES, transform as kg_transform
+from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, DEFAULT_OUTPUT_DIR, OBO_FILENAME
+from ncbi_gene_pyobo.transform import DATA_SOURCES
+from ncbi_gene_pyobo.transform import transform as kg_transform
 
 # from ncbi_gene_pyobo.main import get_obo_file
 
@@ -19,10 +20,13 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 output_option = click.option(
-    "-o", "--output-path", type=click.Path(), default=DEFAULT_INPUT_DIR / OBO_FILENAME, help="The output path for the OBO file."
+    "-o",
+    "--output-path",
+    type=click.Path(),
+    default=DEFAULT_INPUT_DIR / OBO_FILENAME,
+    help="The output path for the OBO file.",
 )
 show_status_option = click.option("--show-status/--no-show-status", default=True)
-
 
 
 @click.group()
@@ -55,6 +59,7 @@ def get_obo_file(output_path: str):
     # get_obo_file(output_path)
     obo_file = get_obo()
     obo_file.write_obo(output_path, use_tqdm=True)
+
 
 @main.command()
 @click.option("input_dir", "-i", default=DEFAULT_INPUT_DIR, type=click.Path(exists=True))
