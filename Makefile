@@ -36,7 +36,10 @@ $(RAW_DIR)/%:
 
 # Rule for getting OBO file
 $(OBO_FILE):
-	ncbi-gene get-obo
+	if [ ! -f $(OBO_FILE) ]; then \
+		ncbi-gene get-obo; \
+	fi
+
 
 # Rule for converting OBO to OWL
 $(OWL_FILE): $(OBO_FILE)

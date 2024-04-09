@@ -54,7 +54,7 @@ def main(verbose: int, quiet: bool):
 
 @main.command("get-obo")
 @output_option
-def get_obo_file(output_path: str):
+def get_obo_file(output_path: str = DEFAULT_INPUT_DIR / OBO_FILENAME):
     """Get the obo file."""
     # get_obo_file(output_path)
     obo_file = get_obo()
