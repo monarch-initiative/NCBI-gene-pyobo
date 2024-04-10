@@ -4,9 +4,9 @@ from pathlib import Path
 
 PWD = Path(__file__).parent
 DATA_DIR = PWD / "data"
-OBO_FILENAME = "ncbigene-obo.obo"
-OWL_FILENAME = "ncbigene-obo.owl"
-JSON_FILENAME = "ncbigene-obo.json"
+OBO_FILENAME = "ncbigene-full-obo.obo"
+OWL_FILENAME = "ncbigene-full-obo.owl"
+JSON_FILENAME = "ncbigene-full-obo.json"
 
 
 DEFAULT_INPUT_DIR = DATA_DIR / "raw"

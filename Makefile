@@ -8,9 +8,9 @@ RAW_DIR := $(DATA_DIR)/raw
 RELEASE_DIR := $(DATA_DIR)/release
 
 # File targets
-OBO_FILE := $(RAW_DIR)/ncbigene-obo.obo
-OWL_FILE := $(RAW_DIR)/ncbigene-obo.owl
-JSON_FILE := $(RAW_DIR)/ncbigene-obo.json
+OBO_FILE := $(RAW_DIR)/ncbigene-full-obo.obo
+OWL_FILE := $(RAW_DIR)/ncbigene-full-obo.owl
+JSON_FILE := $(RAW_DIR)/ncbigene-full-obo.json
 KGX_FILES := $(wildcard $(DATA_DIR)/transformed/*.tsv)
 
 # Default target
