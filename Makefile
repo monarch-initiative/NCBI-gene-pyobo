@@ -43,11 +43,10 @@ $(OBO_FILE):
 
 # Rule for converting OBO to OWL
 $(OWL_FILE): $(OBO_FILE)
-	robot convert -i $< -o $@
-
+	poetry run ncbi-gene convert $< -o $@
 # Rule for converting OWL to JSON
-$(JSON_FILE): $(OWL_FILE)
-	robot convert -i $< -o $@
+$(JSON_FILE): $(OBO_FILE)
+	poetry run ncbi-gene convert $< -o $@
 
 # Release target
 release: all

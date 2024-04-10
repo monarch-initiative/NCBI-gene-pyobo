@@ -10,6 +10,7 @@ from ncbi_gene_pyobo import __version__
 from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, DEFAULT_OUTPUT_DIR, OBO_FILENAME
 from ncbi_gene_pyobo.transform import DATA_SOURCES
 from ncbi_gene_pyobo.transform import transform as kg_transform
+import fastobo
 
 # from ncbi_gene_pyobo.main import get_obo_file
 
@@ -25,6 +26,13 @@ output_option = click.option(
     type=click.Path(),
     default=DEFAULT_INPUT_DIR / OBO_FILENAME,
     help="The output path for the OBO file.",
+)
+output_format_option = click.option(
+    "--output-format",
+    "-f",
+    type=click.Choice(["owl", "json"]),
+    default="owl",
+    help="The output format for the edges.",
 )
 show_status_option = click.option("--show-status/--no-show-status", default=True)
 
@@ -79,6 +87,25 @@ def transform(*args, **kwargs) -> None:
     kg_transform(*args, **kwargs)
 
     return None
+
+@main.command()
+@click.argument("input", type=click.Path(exists=True))
+@output_option
+@output_format_option
+def convert(input: str, output_path: str, output_format: str):
+    """Convert an OBO file to a different format."""
+    if not output_format:
+        output_format = output_path.split(".")[-1]
+    obo_doc = fastobo.load(input)
+    if "default-namespace" not in obo_doc.header:
+        obo_doc.header.insert(99, fastobo.header.DefaultNamespaceClause("ncbigene"))
+    if output_format == "owl":
+        fastobo.dump_owl(obo_doc, output_path, format="ofn")
+    elif output_format == "json":
+        fastobo.dump_graph(obo_doc, output_path)
+    else:
+        raise ValueError(f"invalid output format: {output_format}")
+
 
 
 if __name__ == "__main__":
