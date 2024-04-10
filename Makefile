@@ -37,7 +37,7 @@ $(RAW_DIR)/%:
 # Rule for getting OBO file
 $(OBO_FILE):
 	if [ ! -f $(OBO_FILE) ]; then \
-		ncbi-gene get-obo; \
+		poetry run ncbi-gene get-obo; \
 	fi
 
 
