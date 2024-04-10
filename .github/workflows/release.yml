@@ -2,8 +2,8 @@ name: Release
 
 on:
   workflow_dispatch:  # This allows manual triggering of the workflow
-  schedule:
-    - cron: '0 0 * * 0'  # This runs the workflow at midnight every Sunday (UTC)
+  # schedule:
+    # - cron: '0 0 * * 0'  # This runs the workflow at midnight every Sunday (UTC)
 
 jobs:
   build:
