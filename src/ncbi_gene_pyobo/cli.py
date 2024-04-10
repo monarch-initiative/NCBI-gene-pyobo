@@ -4,13 +4,13 @@ import logging
 from os import makedirs
 
 import click
+import fastobo
 from pyobo.sources.ncbigene import get_obo
 
 from ncbi_gene_pyobo import __version__
 from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, DEFAULT_OUTPUT_DIR, OBO_FILENAME
 from ncbi_gene_pyobo.transform import DATA_SOURCES
 from ncbi_gene_pyobo.transform import transform as kg_transform
-import fastobo
 
 # from ncbi_gene_pyobo.main import get_obo_file
 
@@ -88,6 +88,7 @@ def transform(*args, **kwargs) -> None:
 
     return None
 
+
 @main.command()
 @click.argument("input", type=click.Path(exists=True))
 @output_option
@@ -105,7 +106,6 @@ def convert(input: str, output_path: str, output_format: str):
         fastobo.dump_graph(obo_doc, output_path)
     else:
         raise ValueError(f"invalid output format: {output_format}")
-
 
 
 if __name__ == "__main__":
