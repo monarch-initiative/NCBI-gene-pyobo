@@ -51,9 +51,11 @@ $(JSON_FILE): $(OBO_FILE)
 # Release target
 release: all
 	@mkdir -p $(RELEASE_DIR)
-	cp $(OBO_FILE) $(OWL_FILE) $(JSON_FILE) $(RELEASE_DIR)
-	cp $(KGX_FILES) $(RELEASE_DIR)
-	cd $(DATA_DIR) && tar -czf release-$(shell date +%Y-%m-%d).tar.gz release
+	# Make tar file for .obo
+	tar -czf $(RELEASE_DIR)/ncbigene-full-obo-$(shell date +%Y-%m-%d).tar.gz -C $(dir $(OBO_FILE)) $(notdir $(OBO_FILE))
+	# Make tar file for all .tsv files
+	tar -czf $(RELEASE_DIR)/kgx-$(shell date +%Y-%m-%d).tar.gz -C $(DATA_DIR)/transformed/ *.tsv
+
 
 test:
 	echo $(DATA_DIR)
