@@ -99,7 +99,7 @@ def convert(input: str, output_path: str, output_format: str):
         output_format = output_path.split(".")[-1]
     obo_doc = fastobo.load(input)
     if "default-namespace" not in obo_doc.header:
-        obo_doc.header.insert(99, fastobo.header.DefaultNamespaceClause("ncbigene"))
+        obo_doc.header.insert(99, fastobo.header.DefaultNamespaceClause("NCBIGene"))
     if output_format == "owl":
         fastobo.dump_owl(obo_doc, output_path, format="ofn")
     elif output_format == "json":
