@@ -127,4 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-src/ncbi_gene_pyobo/data/raw/ncbigene-full-obo.*
+src/ncbi_gene_pyobo/data/raw/ncbigene-full-obo*
+ncbigene-500-obo.obo
