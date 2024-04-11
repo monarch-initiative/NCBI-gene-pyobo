@@ -9,6 +9,7 @@ RELEASE_DIR := $(DATA_DIR)/release
 
 # File targets
 OBO_FILE := $(RAW_DIR)/ncbigene-full-obo.obo
+EDITED_OBO_FILE := $(RAW_DIR)/ncbigene-full-obo-edit.obo
 OWL_FILE := $(RAW_DIR)/ncbigene-full-obo.owl
 JSON_FILE := $(RAW_DIR)/ncbigene-full-obo.json
 KGX_FILES := $(wildcard $(DATA_DIR)/transformed/*.tsv)
@@ -18,6 +19,9 @@ all: kgx
 
 # Rule for fetching OBO file
 obo: $(OBO_FILE)
+
+# Rule for editing OBO file
+edit: $(EDITED_OBO_FILE)
 
 # Rule for converting OBO to OWL
 owl: $(OWL_FILE)
@@ -40,13 +44,21 @@ $(OBO_FILE):
 		poetry run ncbi-gene get-obo; \
 	fi
 
+# Rule for editing OBO file: Remove all \ characters
+$(EDITED_OBO_FILE): $(OBO_FILE)
+	sed 's/def: "\\\\\(.*\)\\\\\\\\\\\\" \[\]/def: "\1" []/' $(OBO_FILE) > $(EDITED_OBO_FILE)
 
-# Rule for converting OBO to OWL
-$(OWL_FILE): $(OBO_FILE)
-	poetry run ncbi-gene convert $< -o $@
-# Rule for converting OWL to JSON
-$(JSON_FILE): $(OBO_FILE)
-	poetry run ncbi-gene convert $< -o $@
+# Rule for converting OBO to OWL using fastobo
+$(OWL_FILE): $(EDITED_OBO_FILE)
+	if [ ! -f $(OWL_FILE) ]; then \
+		poetry run ncbi-gene convert $< -o $@; \
+	fi
+
+# Rule for converting OBO to JSON using fastobo
+$(JSON_FILE): $(EDITED_OBO_FILE)
+	if [ ! -f $(JSON_FILE) ]; then \
+		poetry run ncbi-gene convert $< -o $@; \
+	fi
 
 # Release target
 release: all
