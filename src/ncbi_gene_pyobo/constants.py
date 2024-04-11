@@ -4,9 +4,12 @@ from pathlib import Path
 
 PWD = Path(__file__).parent
 DATA_DIR = PWD / "data"
+QUERIES_DIR = PWD / "sql_queries"
+
 OBO_FILENAME = "ncbigene-full-obo.obo"
 OWL_FILENAME = "ncbigene-full-obo.owl"
 JSON_FILENAME = "ncbigene-full-obo.json"
+SUBSET_TABLE_QUERY_FILENAME = QUERIES_DIR / "create_table_from_ncbigene.sql"
 
 
 DEFAULT_INPUT_DIR = DATA_DIR / "raw"
