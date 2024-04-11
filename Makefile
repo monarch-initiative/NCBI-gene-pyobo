@@ -44,7 +44,7 @@ $(OBO_FILE):
 		poetry run ncbi-gene get-obo; \
 	fi
 
-# Rule for editing OBO file: Remove all \ characters
+# Rule for editing OBO file: Remove all \ characters [https://github.com/fastobo/fastobo-py/issues/342]
 $(EDITED_OBO_FILE): $(OBO_FILE)
 	sed 's/def: "\\\\\(.*\)\\\\\\\\\\\\" \[\]/def: "\1" []/' $(OBO_FILE) > $(EDITED_OBO_FILE)
 
