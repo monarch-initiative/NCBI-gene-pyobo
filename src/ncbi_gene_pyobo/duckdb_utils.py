@@ -23,7 +23,7 @@ from ncbi_gene_pyobo.constants import (
 ncbigene_module = pystow.module("ncbigene")
 
 
-def ncbigene_2_duckdb():
+def ncbigene_2_kgx():
     """Convert the NCBI Gene data to a DuckDB database and export in KGX format."""
     url = "https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz"
     local_storage = DEFAULT_INPUT_DIR / "gene_info.tsv"

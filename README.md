@@ -28,9 +28,9 @@ make owl
 ```shell
 make json
 ``` -->
-### Generate DuckDB TSV
+### Generate KGX TSVs
 ```shell
-make duckdb
+make kgx
 ```
 
 ### Generate KGX nodes and edges TSV files

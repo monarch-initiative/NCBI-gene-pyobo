@@ -30,12 +30,12 @@ owl: $(OWL_FILE)
 json: $(JSON_FILE)
 
 # Rule for creating duckdb TSVs
-duckdb:
-	ncbi-gene to-duckdb
+kgx:
+	ncbi-gene to-kgx
 
 # Rule for KGX transformation
-kgx: $(JSON_FILE)
-	ncbi-gene transform
+# kgx: $(JSON_FILE)
+# 	ncbi-gene transform
 
 # Pattern rule for creating files
 $(RAW_DIR)/%:
