@@ -132,3 +132,4 @@ ncbigene-500-obo.obo
 src/ncbi_gene_pyobo/data/raw/*.tsv
 gene_info.tsv
 src/ncbi_gene_pyobo/data/transformed/*.tsv
+.tmp/*
