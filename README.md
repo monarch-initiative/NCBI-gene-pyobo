@@ -1,6 +1,6 @@
 # ncbi-gene-pyobo
 
-Automatic translation of NCBIGene into `obo`/`owl`/`obojson` via [pyobo](https://github.com/biopragmatics/pyobo/) and [ROBOT](http://robot.obolibrary.org). Also generates [KGX](https://github.com/biolink/kgx) `nodes.tsv` and `edges.tsv` for the same.
+Automatic translation of NCBIGene into `obo`/`owl`/`obojson` via [pyobo](https://github.com/biopragmatics/pyobo/) and [ROBOT](http://robot.obolibrary.org). Also generates [KGX](https://github.com/biolink/kgx) `nodes.tsv` and `edges.tsv` for the same using [duckdb](https://duckdb.org).
 
 ### Setup
 Create a virtual environment of your choice
