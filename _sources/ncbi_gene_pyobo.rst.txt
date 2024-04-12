@@ -28,6 +28,14 @@ ncbi\_gene\_pyobo.constants module
    :undoc-members:
    :show-inheritance:
 
+ncbi\_gene\_pyobo.duckdb\_utils module
+--------------------------------------
+
+.. automodule:: ncbi_gene_pyobo.duckdb_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 ncbi\_gene\_pyobo.transform module
 ----------------------------------
 
