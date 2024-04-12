@@ -33,20 +33,11 @@ make json
 make kgx
 ```
 
-### Generate KGX nodes and edges TSV files
-```shell
-make all
-```
-or
-```shell
-make kgx
-```
-
-### Make a release
+<!-- ### Make a release
 ```shell
 make release
 ```
-This creates the release-{YY-MM-DD}.tar.gz file which contains the OBO, OWL, JSON, and the KGX nodes.tsv and edges.tsv files.
+This creates the release-{YY-MM-DD}.tar.gz file which contains the OBO, OWL, JSON, and the KGX nodes.tsv and edges.tsv files. -->
 
 # Acknowledgements
 
