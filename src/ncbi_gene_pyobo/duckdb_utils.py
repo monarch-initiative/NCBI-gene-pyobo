@@ -3,7 +3,7 @@ import shutil
 import duckdb
 import pystow
 
-from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, GENE_CATEGORY, GENE_ID, NODES_TABLE_SCHEMA, TAXON_CATEGORY, TAXON_ID
+from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, GENE_CATEGORY, GENE_ID, NODE_HEADER, NODES_TABLE_SCHEMA, TAXON_CATEGORY, TAXON_ID
 
 ncbigene_module = pystow.module("ncbigene")
 
@@ -29,19 +29,28 @@ def ncbigene_2_duckdb():
         conn.execute("ALTER TABLE ncbigene RENAME COLUMN '#tax_id' TO tax_id")
         row_count = conn.execute("SELECT COUNT(*) FROM ncbigene").fetchone()[0]
         print(f"Number of rows in the table: {row_count}")
+        conn.execute(f"""CREATE TABLE nodes ({NODES_TABLE_SCHEMA})""")
         conn.execute(f"""
-                        CREATE TABLE nodes ({NODES_TABLE_SCHEMA})
-                     """)
-        conn.execute(f"""
-            INSERT INTO nodes (id, category)
-            SELECT '{TAXON_ID}' || tax_id AS id,
-                   '{TAXON_CATEGORY}' AS category 
-            FROM ncbigene 
-            UNION ALL 
-            SELECT '{GENE_ID}' || GeneID AS id,
-                   '{GENE_CATEGORY}' AS category                        
-            FROM ncbigene
-        """)
+                        INSERT INTO nodes ({",".join(NODE_HEADER)})
+                        SELECT CONCAT('{TAXON_ID}', tax_id) AS id,
+                            '{TAXON_CATEGORY}' AS category,
+                                NULL AS name,
+                                NULL AS description,
+                                NULL AS xref,
+                                'NCBI Gene' AS provided_by,
+                                NULL AS synonym
+                        FROM ncbigene 
+                        UNION ALL 
+                        SELECT CONCAT('{GENE_ID}', GeneID) AS id,
+                                '{GENE_CATEGORY}' AS category,
+                                CASE WHEN Symbol = 'NEWENTRY' THEN NULL ELSE Symbol END AS name,
+                                CASE WHEN description = '-' THEN NULL ELSE description END AS description,
+                                CASE WHEN dbXrefs = '-' THEN NULL ELSE dbXrefs END AS xref,
+                                'NCBI Gene' AS provided_by,
+                                CASE WHEN Synonyms = '-' THEN NULL ELSE Synonyms END AS synonym               
+                        FROM ncbigene
+                    """)
+        
         
         import pdb; pdb.set_trace()
         
@@ -81,10 +90,13 @@ def ncbigene_2_duckdb():
         # ├───────────────────────────────────────┤
         # │                16 rows                │
         
-        # duckdb.sql('SELECT * FROM ncbigene WHERE "#tax_id" == 7 LIMIT 10')
-        # duckdb.sql("SELECT * FROM ncbigene WHERE ncbigene.LocusTag == 'Dmel_CG3038' LIMIT 10")
+        # conn.execute('SELECT * FROM ncbigene WHERE "#tax_id" == 7 LIMIT 10').df()
+        # conn.execute("SELECT * FROM ncbigene WHERE ncbigene.LocusTag == 'Dmel_CG3038' LIMIT 10").df()
 
         # duckdb.sql("CREATE TABLE new_table AS SELECT tax_id AS id FROM ncbigene UNION ALL SELECT GeneID FROM ncbigene")
         # conn.execute("select * from nodes limit 5").df()
+        # conn.execute("SELECT DISTINCT Symbol FROM ncbigene").df()
+        # conn.execute("select * from nodes limit 5").df()
+        # conn.execute("select * from nodes WHERE id like '%Gene:%' and name NOT NULL limit 5").df()
 
 
