@@ -24,9 +24,13 @@ ncbi-gene get-obo
 make owl
 ```
 
-### Generate the obo-json file
+<!-- ### Generate the obo-json file
 ```shell
 make json
+``` -->
+### Generate DuckDB TSV
+```shell
+make duckdb
 ```
 
 ### Generate KGX nodes and edges TSV files

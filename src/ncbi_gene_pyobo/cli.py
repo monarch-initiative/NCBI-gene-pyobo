@@ -9,6 +9,7 @@ from pyobo.sources.ncbigene import get_obo
 
 from ncbi_gene_pyobo import __version__
 from ncbi_gene_pyobo.constants import DEFAULT_INPUT_DIR, DEFAULT_OUTPUT_DIR, OBO_FILENAME
+from ncbi_gene_pyobo.duckdb_utils import ncbigene_2_duckdb
 from ncbi_gene_pyobo.transform import DATA_SOURCES
 from ncbi_gene_pyobo.transform import transform as kg_transform
 
@@ -106,6 +107,12 @@ def convert(input: str, output_path: str, output_format: str):
         fastobo.dump_graph(obo_doc, output_path)
     else:
         raise ValueError(f"invalid output format: {output_format}")
+
+
+@main.command("to-duckdb")
+def click_ncbigene_2_duckdb():
+    """Convert the NCBI Gene database to a DuckDB database."""
+    ncbigene_2_duckdb()
 
 
 if __name__ == "__main__":

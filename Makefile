@@ -1,4 +1,4 @@
-.PHONY: all obo owl json kgx release
+.PHONY: all obo owl json duckdb kgx release
 
 # Directories
 CURDUR := $(shell realpath $(PWD))/src/ncbi_gene_pyobo
@@ -28,6 +28,10 @@ owl: $(OWL_FILE)
 
 # Rule for converting OWL to JSON
 json: $(JSON_FILE)
+
+# Rule for creating duckdb TSVs
+duckdb:
+	ncbi-gene to-duckdb
 
 # Rule for KGX transformation
 kgx: $(JSON_FILE)
